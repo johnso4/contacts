@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">     
+  <script src="./node_modules/angular/angular.min.js"></script>
+  <script src="./node_modules/onsenui/js/onsenui.min.js"></script>
+  <script src="./node_modules/onsenui/js/angular-onsenui.js"></script>  
+  <script src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>     
+
+  <link rel="stylesheet" href="node_modules/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="node_modules/onsenui/css/onsen-css-components.css"> 
+  <link rel="stylesheet" href="node_modules/unicorn-ui/buttons.css"> 
+  <link rel="stylesheet" href="public/styles.css">       
+
+  <script src="./public/app.js"></script>
+</head>
+<body>
+
+
+
+
+<ons-navigator swipeable var="myNavigator" page="signIn.html" id="nav"></ons-navigator>
+
+
+
+<!-- this is the sign In page -->
+
+<template id="signIn.html">
+  <ons-page id="signInPage" ng-controller="signInController as sign" ons-init="sign.init($event)">
+
+
+    <ons-toolbar>
+      <div class="center">Contacts App</div>
+    </ons-toolbar>
+
+    <br >
+    <br >
+    <br >
+    <br >
+    <br >
+    <br >
+    <br >
+    <br >
+    <div style="text-align: center; margin-top: 30px">
+      <form ng-submit="sign.doLogin(loginData);">
+        <p>
+          <ons-input id="username" modifier="underbar" placeholder="Username" ng-model="sign.loginData.username"></ons-input>
+        </p>
+        <p>
+          <ons-input id="password" modifier="underbar" type="password" placeholder="Password" ng-model="sign.loginData.password"></ons-input>
+        </p>  
+        <br >
+        <br >
+
+        <button class="button button-glow button-border button-rounded button-primary button-small" id=signBtn type="submit">
+        Sign In
+        </button> 
+      
+      </form>  
+      <br >
+
+      <button id=regBtn class="button button-tiny" ng-click="myNavigator.pushPage('registration.html')">
+      Register
+      </button>  
+
+    </div>  
+
+  </ons-page>
+</template>
+
+
+
+<!-- this is the registration page -->
+
+<template id="registration.html">
+  <ons-page id="regPage" ng-controller="regController as reg">
+
+
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button>Back</ons-back-button>
+      </div>  
+      <div class="center">Register</div>
+    </ons-toolbar>
+
+    <br >
+    <br >
+    <br >
+    <br >
+    <br >
+    <form ng-submit="reg.regUser(regData);">
+    <div style="text-align: center">
+      <p>
+        <ons-input id="username2" modifier="underbar" placeholder="Username" float ng-model="reg.regData.username" ></ons-input>
+      </p>
+
+      <p>
+        <ons-input id="password2" modifier="underbar" type="password" placeholder="Password" float ng-model="reg.regData.password">
+        </ons-input>
+      </p>  
+
+      <p>
+        <ons-input id="password3" modifier="underbar" type="password" 
+        placeholder="Confirm Password" float ng-model="reg.regData.confirmPassword">
+        </ons-input>
+      </p>
+
+      <button class="button" id="regBtn2" modifier="light" type = "submit">Register
+      </button>
+
+    </div>
+    </form>
+
+
+  </ons-page>
+</template>
+
+
+<!-- This is the contacts page -->
+
+<template id="contacts.html">
+  <ons-page id="conPage" ng-controller="contactController as contactCtrl">
+
+
+    <ons-toolbar>
+      <div class="center">Contacts</div>
+    </ons-toolbar>
+
+
+    <br>
+    <div ng-repeat="contact in contactlist track by $index" ng-if="contactCtrl.display(contact);">
+      <ons-list modifier="inset">
+        <ons-list-header>{{contact.first_name + " " + contact.last_name}}</ons-list-header>
+        <ons-list-item modifier="longdivider">email: {{contact.email}}</ons-list-item>
+        <ons-list-item modifier="longdivider">phone: {{contact.phone}}</ons-list-item>
+      </ons-list>   
+      <br > 
+    </div>
+
+
+    <div style="text-align: center">
+      <br />
+      <button class="button button-rounded" modifier="light" ng-click="contactCtrl.clickAdd();">Add Contact</ons-button>
+      <button class="button button-rounded" modifier="light" ng-click="contactCtrl.logout()">Logout</ons-button>
+    </div>
+
+
+  </ons-page>
+</template>
+
+
+
+<!-- This is the add contact page -->
+
+<template id="addContact.html">
+  <ons-page id = "addPage" ng-controller="addController as add" ons-init="add.init($event)">
+
+
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button>Back</ons-back-button>
+      </div>
+      <div class="center">Add Contacts</div>
+    </ons-toolbar>
+
+    <br >
+    <br >
+    <form ng-submit="add.addContact(contactData);" ng-init="add.contactData.username = 'none' ">
+    <div style="text-align: center; margin-top: 30px">
+      <p>
+        <ons-input modifier="underbar" placeholder="First Name" float ng-model="add.contactData.first_name"></ons-input>
+      </p>
+      <p>
+        <ons-input modifier="underbar" placeholder="Last Name" float ng-model="add.contactData.last_name"></ons-input>
+      </p>  
+      <p>
+        <ons-input modifier="underbar" placeholder="Email Address" float ng-model="add.contactData.email"></ons-input>
+      </p>
+      <p>
+        <ons-input modifier="underbar" placeholder="Phone Number" float ng-model="add.contactData.phone"></ons-input>
+      </p>       
+
+      <button class="button" id=addBtn type="submit">
+      Add
+      </button> 
+
+      <ons-modal var="myModal" direction="up" id="modal">
+        <div style="text-align: center">
+          <p id="modalMsg"></p>
+          <p>
+            <ons-button ng-click="add.hideModal()">Hide</ons-button>
+          </p>
+        </div>
+      </ons-modal>      
+
+    </div>
+    </form>
+
+  </ons-page>
+</template>
+
+
+</body>
+</html>
