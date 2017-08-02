@@ -28,9 +28,8 @@ ons.bootstrap()
       }
     };
 
+
     this.doLogin = function(loginData) {
-      app.loading = true;
-      app.errorMsg = false;
       console.log('form submitted');
       console.log(app.loginData);      
 
@@ -62,8 +61,6 @@ ons.bootstrap()
 
 
     this.regUser = function(regData) {
-      app.loading = true;
-      app.errorMsg = false;
       console.log('form submitted');
       console.log(app.regData);
 
