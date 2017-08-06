@@ -33,20 +33,30 @@ ons.bootstrap()
       console.log('form submitted');
       console.log(app.loginData);      
 
+      var loadMod = document.getElementById('loadModal');
+      loadModal.show();
+
       Auth.login(app.loginData).then(function(data) {
         if(data.data.success) {
-          console.log("successful login");
-          $window.localStorage.setItem('loggedIn', 'true');
-          console.log("logging in as: " + data.data.username);
-          $window.localStorage.setItem('userName', data.data.username);          
-          var nav = document.getElementById('nav');
-          nav.pushPage('contacts.html');          
+          setTimeout(function() {
+            loadModal.hide(); 
+            console.log("successful login");
+            $window.localStorage.setItem('loggedIn', 'true');
+            console.log("logging in as: " + data.data.username);
+            $window.localStorage.setItem('userName', data.data.username);          
+            var nav = document.getElementById('nav');
+            nav.pushPage('contacts.html');               
+
+          }, 1200);       
         }
         else {
-          // Create Error Message
-          console.log("unseccessful login");
-          console.log("error: " + data.data.message);
-          ons.notification.alert(data.data.message);
+          setTimeout(function() {
+            loadModal.hide(); 
+            console.log("unseccessful login");
+            console.log("error: " + data.data.message);
+            ons.notification.alert(data.data.message);
+
+          }, 1200);
         }
       });
     };

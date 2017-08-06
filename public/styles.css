@@ -1,15 +1,72 @@
 #signInPage .page__background {
 	background-image: url('images/bg.jpg');
+	background-size: 375px 667px;
 }
 
 #regPage .page__background {
 	background-image: url('images/bg.jpg');
-}
-
-#conPage .page__background {
-	background-image: url('images/bg.jpg');
+	background-size: 375px 667px;	
 }
 
 #addPage .page__background {
 	background-image: url('images/bg.jpg');
+	background-size: 375px 667px;	
 }
+
+
+.login {
+	margin: 0 auto;
+	background: #FFFFFF;
+	border: 1px solid #979797;
+	border-radius: 5px;
+	width: 285px;
+}
+
+.reigster {
+	margin: 0 auto;
+	background: #FFFFFF;
+	border: 1px solid #979797;
+	border-radius: 5px;
+	width: 375px;
+}
+
+.addContactBox {
+	margin: 0 auto;
+	background: #FFFFFF;
+	border: 1px solid #979797;
+	border-radius: 5px;
+	width: 200px;
+}
+
+#onsenImg {
+	width: 40%;
+	height: 40%;
+	position: relative;
+	left: 85px;
+	display: block;
+}
+
+#regText {
+	font-family: Palatino;
+	font-size: 120%;
+	text-align: center;
+	color: #FFF;
+	animation: fromLeft .50s ease-out;
+
+}
+
+@keyframes fromLeft {
+  from {
+    margin-left: 100%;
+    width: 300%;   
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;	    
+  }
+}
+
+
+
+
